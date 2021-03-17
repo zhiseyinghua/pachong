@@ -19,7 +19,7 @@ class MysqlOperation():
         self.conn = pymysql.connect(host=self.host, user=self.user, password=self.password, port=self.port,
                                     db=self.dbname, charset='utf8')  # 创建连接
         self.cur = self.conn.cursor()  # 创建游标
-        # print("连接成功")
+        print("连接成功")
 
     def select(self, table_name, id):
         '''查询数据'''
@@ -64,14 +64,18 @@ class MysqlOperation():
             print("密码更新成功")  # 也弹出一个对话框
 
     def execute(self, sql):
+        print("执行sql语句")
         '''执行sql'''
         try:
+            print("执行sql语句")
             # 执行SQL语句
             self.cur.execute(sql)
+            print("执行sql语句")
             # 提交事务到数据库执行
             self.conn.commit()  # 事务是访问和更新数据库的一个程序执行单元
 
         except BaseException as f:
+            print("执行sql语句错误")
             self.conn.rollback()
 
         # 返回受影响行数
