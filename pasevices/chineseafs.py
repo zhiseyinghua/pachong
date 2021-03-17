@@ -19,7 +19,7 @@ class Chineseafs:
             data = getOneChineseafst(page=10)
 
 
-# 这是获取企业名称城市联系电话http请求
+# 这是获取企业名称城市联系电话http请求,并存进数据库
 # 它只获取一条数据
 # page 是一个字符串
 def getOneChineseafst(page):
@@ -39,7 +39,13 @@ def getOneChineseafst(page):
     # print(HEADERS)
 
     # res = RequestHandler().post(url, data=data, headers=HEADERS)
-    res = {
+
+    # print(res.encoding)
+    # res.encoding = "gb2312"
+    # res.content = 'utf-8'
+    # a =res.text()
+    # newData = json.loads(res.text)
+    newData = {
         "status": "200",
         "datas": {
             "table_data": {
@@ -191,19 +197,14 @@ def getOneChineseafst(page):
             "question_id": "6034d6979fc2a2d4e4f45d23"
         }
     }
-    # print(res.encoding)
-    # res.encoding = "gb2312"
-    # res.content = 'utf-8'
-    # a =res.text()
-    # _locals = json.loads(res.text)['datas']['table_data']['columns'][0]
 
     # 用于取值的数据
-    _company = res['datas']['table_data']['columns'][0]['value']
-    _locals = res['datas']['table_data']['columns'][1]['value']
-    _phone = res['datas']['table_data']['columns'][2]['value']
-    print("1",_company)
-    print("2",_locals)
-    print("3",_phone)
+    _company = newData['datas']['table_data']['columns'][0]['value']
+    _locals = newData['datas']['table_data']['columns'][1]['value']
+    _phone = newData['datas']['table_data']['columns'][2]['value']
+    print("1", _company)
+    print("2", _locals)
+    print("3", _phone)
     valueSeqList = []
     for item in _company:
         # print(item['seq'])
@@ -215,6 +216,6 @@ def getOneChineseafst(page):
         onekey = newphone['text'] + "_" + newphone['seq']
         print(onekey)
         cc = time.localtime(time.time())
-        onekey = str(cc.tm_year)+'/'+str(cc.tm_mon)+'/'+str(cc.tm_mday) + "_" + newphone['text'] 
+        onekey = str(cc.tm_year)+'/'+str(cc.tm_mon)+'/' + \
+            str(cc.tm_mday) + "_" + newphone['text']
         print(onekey)
-    return res
