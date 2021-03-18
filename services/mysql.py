@@ -28,19 +28,21 @@ class MysqlOperation():
         self.cur.execute(sql)  # 查询数据
         return self.cur.fetchall()  # 获取结果
 
-    def insert(self, table_name, id, pwd):
+    def insert(self, sql, val):
         # 首先，查询该id是否已经存在了
         # id存在， 注册失败
         # id不存在， 将一条记录插入user表中，注册成功
-        result = self.select(table_name, id)
-        if result != ():
-            return -1
-
-        else:
-            sql = "insert into %s(user_id, pwd) values(%s,%s)" % (
-                table_name, id, pwd)
-            self.execute(sql)
-            return 1
+        # result = self.select(table_name, id)
+        # if result != ():
+        #     return -1
+        print( sql, val)
+        self.cur.execute(sql,val)
+        # else:
+        #     sql = "insert into %s(user_id, pwd) values(%s,%s)" % (
+        #         table_name, id, pwd)
+        #     self.execute(sql)
+        #     return 1
+        # self.execute(sql)
 
     def delete(self, table_name, id):
         result = self.select(table_name, id)
@@ -64,13 +66,9 @@ class MysqlOperation():
             print("密码更新成功")  # 也弹出一个对话框
 
     def execute(self, sql):
-        print("执行sql语句")
         '''执行sql'''
         try:
-            print("执行sql语句")
-            # 执行SQL语句
             self.cur.execute(sql)
-            print("执行sql语句")
             # 提交事务到数据库执行
             self.conn.commit()  # 事务是访问和更新数据库的一个程序执行单元
 
