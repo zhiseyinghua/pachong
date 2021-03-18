@@ -6,5 +6,5 @@ import asyncio
 
 if __name__ == '__main__':
     chi = Chineseafs()  # 对象
-    chi.getManyChineseafst(amount=3)
+    chi.getManyChineseafst(amount=387)
 

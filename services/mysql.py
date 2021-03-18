@@ -4,7 +4,7 @@ import pymysql
 
 class MysqlOperation():
 
-    def __init__(self, host='localhost', user='root', pwd='533162903', port=3306, db='compangy_data'):
+    def __init__(self, host='localhost', user='root', pwd='533162903', port=3306, db='padata'):
         self.host = host
         self.user = user
         self.password = pwd

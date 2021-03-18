@@ -38,161 +38,6 @@ def getOneChineseafst(page):
     }
 
     data = parse.urlencode(body)
-    # newData = {
-    #     "status": "200",
-    #     "datas": {
-    #         "table_data": {
-    #             "rspd_count": "3095",
-    #             "cur_page": "10",
-    #             "columns": [
-    #                 {
-    #                     "value": [
-    #                         {
-    #                             "text": "贵州华科铝材料工程技术研究有限公司",
-    #                             "seq": "178545"
-    #                         },
-    #                         {
-    #                             "text": "新疆天山军垦牧业有限责任公司(141畜欣旺)",
-    #                             "seq": "178551"
-    #                         },
-    #                         {
-    #                             "text": "贵州嘉盈科技有限公司",
-    #                             "seq": "178552"
-    #                         },
-    #                         {
-    #                             "text": "固始县上一房地产开发有限公司",
-    #                             "seq": "178553"
-    #                         },
-    #                         {
-    #                             "text": "贵州古镇池酒业有限公司",
-    #                             "seq": "178559"
-    #                         },
-    #                         {
-    #                             "text": "石河子市新安镇双顺牧业有限公司141分公司",
-    #                             "seq": "178580"
-    #                         },
-    #                         {
-    #                             "text": "三都水族自治县国有林场投资开发有限公司",
-    #                             "seq": "178584"
-    #                         },
-    #                         {
-    #                             "text": "贵州融鹰塑业科技有限公司",
-    #                             "seq": "178589"
-    #                         },
-    #                         {
-    #                             "text": "三都水族自治县国有林场投资有限公司",
-    #                             "seq": "178592"
-    #                         },
-    #                         {
-    #                             "text": "三都水族自治县国有林场投资开发有限公司",
-    #                             "seq": "178596"
-    #                         }
-    #                     ],
-    #                     "label": "填空1"
-    #                 },
-    #                 {
-    #                     "value": [
-    #                         {
-    #                             "text": "贵阳市",
-    #                             "seq": "178545"
-    #                         },
-    #                         {
-    #                             "text": "石河子141团3连",
-    #                             "seq": "178551"
-    #                         },
-    #                         {
-    #                             "text": "贵阳市白云区",
-    #                             "seq": "178552"
-    #                         },
-    #                         {
-    #                             "text": "信阳市固始县",
-    #                             "seq": "178553"
-    #                         },
-    #                         {
-    #                             "text": "贵阳",
-    #                             "seq": "178559"
-    #                         },
-    #                         {
-    #                             "text": "石河子市",
-    #                             "seq": "178580"
-    #                         },
-    #                         {
-    #                             "text": "三都县",
-    #                             "seq": "178584"
-    #                         },
-    #                         {
-    #                             "text": "贵州贵阳",
-    #                             "seq": "178589"
-    #                         },
-    #                         {
-    #                             "text": "贵州省",
-    #                             "seq": "178592"
-    #                         },
-    #                         {
-    #                             "text": "贵州三都县",
-    #                             "seq": "178596"
-    #                         }
-    #                     ],
-    #                     "label": "填空2"
-    #                 },
-    #                 {
-    #                     "value": [
-    #                         {
-    #                             "text": "15285524453",
-    #                             "seq": "178545"
-    #                         },
-    #                         {
-    #                             "text": "13369932721",
-    #                             "seq": "178551"
-    #                         },
-    #                         {
-    #                             "text": "17885500623",
-    #                             "seq": "178552"
-    #                         },
-    #                         {
-    #                             "text": "13613971152",
-    #                             "seq": "178553"
-    #                         },
-    #                         {
-    #                             "text": "085184414019",
-    #                             "seq": "178559"
-    #                         },
-    #                         {
-    #                             "text": "13369932721",
-    #                             "seq": "178580"
-    #                         },
-    #                         {
-    #                             "text": "08544810335",
-    #                             "seq": "178584"
-    #                         },
-    #                         {
-    #                             "text": "13312253861",
-    #                             "seq": "178589"
-    #                         },
-    #                         {
-    #                             "text": "4810335",
-    #                             "seq": "178592"
-    #                         },
-    #                         {
-    #                             "text": "0854－4810335",
-    #                             "seq": "178596"
-    #                         }
-    #                     ],
-    #                     "label": "填空3"
-    #                 }
-    #             ],
-    #             "total_page": "310"
-    #         },
-    #         "option_num": 3,
-    #         "chart_type": "blank",
-    #         "matrixrow_num": 0,
-    #         "project_id": "6034c3cf9fc2a2d4e4f25394",
-    #         "question_id": "6034d6979fc2a2d4e4f45d23"
-    #     }
-    # }
-    # print(data)
-    # print(HEADERS)
-
     res = RequestHandler().post(url, data=data, headers=HEADERS)
 
     # print(res.encoding)
@@ -216,14 +61,15 @@ def getOneChineseafst(page):
     for newcompany, newlocals, newphone in zip(_company, _locals, _phone):
         print(newcompany['text'], newlocals['text'],
               newphone['text'], newphone['seq'])
-        cc = time.localtime(time.time())
+        tt= int(time.time())
+
+        print(tt)
         # 数据库的逐渐
-        onekey = str(cc.tm_year)+'/'+str(cc.tm_mon)+'/' + \
-            str(cc.tm_mday) + "_" + newphone['text'] + "_" + newphone['seq']
+        onekey = str(tt) +"_" + newphone['text'] + "_" + newphone['seq']
         print(onekey)
         obj = MysqlOperation()  # 对象
         sql = """
-            create table if not exists student(
+            create table if not exists phone_company(
                 runoob_key  varchar(30) not null,
                 runoob_locla  text not null,
                 runoob_company text not null,
@@ -232,11 +78,11 @@ def getOneChineseafst(page):
                 primary key ( `runoob_key` )
             )
         """
-        # insertsql = "INSERT INTO student (runoob_key, runoob_locla, runoob_company, runoob_phone, runoob_sign) VALUES ('%s', '%s',  %s,  '%s',  '%s')"
+        # insertsql = "INSERT INTO phone_company (runoob_key, runoob_locla, runoob_company, runoob_phone, runoob_sign) VALUES ('%s', '%s',  %s,  '%s',  '%s')"
         # insertval = {
         #     'runoob_key', 'runoob_locla', 'runoob_company', 'runoob_phone', 'runoob_sign'
         # }
-        insertsql = 'INSERT ignore INTO student(runoob_key,runoob_locla,runoob_company,runoob_phone,runoob_sign)VALUES("' + onekey + \
+        insertsql = 'INSERT ignore INTO phone_company(runoob_key,runoob_locla,runoob_company,runoob_phone,runoob_sign)VALUES("' + onekey + \
             '","' + newlocals['text'] + '","' + newcompany['text'] + '","' + \
             newphone['text'] + '","' + newphone['seq'] + '")'
         obj.__enter__()
