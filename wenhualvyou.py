@@ -124,7 +124,7 @@ def fac():
         }
     }
 
-    RequestHandler.put(url = url, data=body, headers=HEADERS)
+    RequestHandler.put(url=url, data=body, headers=HEADERS)
 
 
 for i in (1, 4):
