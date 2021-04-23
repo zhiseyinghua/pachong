@@ -23,6 +23,19 @@ class RequestHandler:
             return result
         except Exception as e:
             print("post请求错误: %s" % e)
+    def put(self, url, **kwargs):
+        """封装post方法"""
+        # 获取请求参数
+        params = kwargs.get("params")
+        data = kwargs.get("data")
+        json = kwargs.get("json")
+        headers = kwargs.get("headers")
+        print(data,headers)
+        try:
+            result = requests.post(url, headers=headers, params=params, data=data)
+            return result
+        except Exception as e:
+            print("post请求错误: %s" % e)
     def run_main(self, method, **kwargs):
         """
         判断请求类型
