@@ -127,8 +127,8 @@ def fac():
     RequestHandler.put(url=url, data=body, headers=HEADERS)
 
 
-for i in (1, 4):
-    fac()
+# for i in (1, 4):
+#     fac()
 
 # connect = pymysql.Connect(host='localhost', port=3306, user="root", passwd="1842505833", db="XCX",
 #                               charset='utf8')
