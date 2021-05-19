@@ -17,7 +17,7 @@ class RequestHandler:
         data = kwargs.get("data")
         json = kwargs.get("json")
         headers = kwargs.get("headers")
-        print(data,headers)
+        # print(data,headers,url)
         try:
             result = requests.post(url, headers=headers, params=params, data=data)
             return result
