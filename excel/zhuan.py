@@ -10,28 +10,29 @@ from mysql import MysqlOperation
 
 
 def _ref(_type, data):
+    _type =  str(_type)
     print(_type, data)
     obj = MysqlOperation()  # 对象
-    insertsql = 'INSERT ignore INTO excel(content,_image,_image1,_image2,content_time,ratesku,ratesku2,user,id)VALUES(data[0], data[2] ,data[3],data[4] , data[5],data[6] , data[7] ,_type)'
+    insertsql = 'INSERT ignore INTO excel(content,_image,_image1,_image2,content_time,ratesku,ratesku2,user,id)VALUES("' +data[0] + '","' +data[1] + '","' +data[2] +'","' +data[3] +'","' +data[4] +'","' +data[5] +'","' +data[6] +'","' +data[7]+'","'+_type+'")'
     print(insertsql)
 
     sql = """
             create table if not exists excel(
-            content   varchar(30) not null, 
-            _image varchar(30) not null, ,
-            _image1  varchar(30) not null,
-            _image2  varchar(30) not null,
-            content_time varchar(30) not null,
-            ratesku  varchar(30) not null,
-            ratesku2  varchar(30) not null,
-            user  varchar(30) not null,
-            id  varchar(30) not null,
-            primary key ( `id` )
+                content varchar(30) not null, 
+                _image  varchar(30) not null,
+                _image1 varchar(30) not null,
+                _image2 varchar(30) not null,
+                content_time    varchar(30) not null,
+                ratesku  varchar(30) not null,
+                ratesku2  varchar(30) not null,
+                user  varchar(30) not null,
+                id  varchar(30) not null,
+                primary key ( `id` )
         )"""
     print("sql", _type, sql)
     obj.__enter__()
     obj.execute(sql)
-    # obj.execute(insertsql)
+    obj.execute(insertsql)  
     obj.__exit__()
 
 
