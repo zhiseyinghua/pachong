@@ -15,7 +15,7 @@ from services.mysql import MysqlOperation
 class Chineseafs:
     def getManyChineseafst(self, amount):
         print(amount)
-        for i in range(1,amount):
+        for i in range(1, amount):
             print("123456789")
             print(i)
             getOneChineseafst(page=i)
@@ -34,7 +34,7 @@ def getOneChineseafst(page):
     body = {
         "page": page,
         "question_id": "6034d6979fc2a2d4e4f45d23",
-        "__xsrf":"2|32b1760e|fffd976fd08e2d917c0133507bdabdeb|1616040919"
+        "__xsrf": "2|32b1760e|fffd976fd08e2d917c0133507bdabdeb|1616040919"
     }
 
     data = parse.urlencode(body)
@@ -61,11 +61,11 @@ def getOneChineseafst(page):
     for newcompany, newlocals, newphone in zip(_company, _locals, _phone):
         print(newcompany['text'], newlocals['text'],
               newphone['text'], newphone['seq'])
-        tt= int(time.time())
+        tt = int(time.time())
 
         print(tt)
         # 数据库的逐渐
-        onekey = str(tt) +"_" + newphone['text'] + "_" + newphone['seq']
+        onekey = str(tt) + "_" + newphone['text'] + "_" + newphone['seq']
         print(onekey)
         obj = MysqlOperation()  # 对象
         sql = """
